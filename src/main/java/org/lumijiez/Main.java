@@ -1,19 +1,30 @@
 package org.lumijiez;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.lumijiez.parser.HelloWorldBaseListener;
+import org.lumijiez.parser.HelloWorldLexer;
+import org.lumijiez.parser.HelloWorldParser;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String input = "Hello, World!";
+        CharStream inputStream = CharStreams.fromString(input);
+        HelloWorldLexer lexer = new HelloWorldLexer(inputStream);
+        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        HelloWorldParser parser = new HelloWorldParser(tokenStream);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        ParseTreeWalker walker = new ParseTreeWalker();
+        MyListener listener = new MyListener();
+        walker.walk(listener, parser.start());
+    }
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+    static class MyListener extends HelloWorldBaseListener {
+        @Override
+        public void enterStart(HelloWorldParser.StartContext ctx) {
+            System.out.println("Parsed: " + ctx.getText());
         }
     }
 }
