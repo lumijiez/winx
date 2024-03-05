@@ -4,26 +4,32 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.lumijiez.parser.HelloWorldBaseListener;
-import org.lumijiez.parser.HelloWorldLexer;
-import org.lumijiez.parser.HelloWorldParser;
+import org.lumijiez.parser.SoftwareRequirementsBaseListener;
+import org.lumijiez.parser.SoftwareRequirementsLexer;
+import org.lumijiez.parser.SoftwareRequirementsParser;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Objects;
 
 public class Main {
-    public static void main(String[] args) {
-        String input = "Hello, World!";
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        String input = new String(Files.readAllBytes(Path.of(Objects.requireNonNull(Main.class.getResource("/TestProgram.txt")).toURI())));
+
         CharStream inputStream = CharStreams.fromString(input);
-        HelloWorldLexer lexer = new HelloWorldLexer(inputStream);
+        SoftwareRequirementsLexer lexer = new SoftwareRequirementsLexer(inputStream);
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        HelloWorldParser parser = new HelloWorldParser(tokenStream);
+        SoftwareRequirementsParser parser = new SoftwareRequirementsParser(tokenStream);
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        MyListener listener = new MyListener();
-        walker.walk(listener, parser.start());
+        SoftwareReqParseTree listener = new SoftwareReqParseTree();
+        walker.walk(listener, parser.program());
     }
 
-    static class MyListener extends HelloWorldBaseListener {
+    static class SoftwareReqParseTree extends SoftwareRequirementsBaseListener {
         @Override
-        public void enterStart(HelloWorldParser.StartContext ctx) {
+        public void enterProgram(SoftwareRequirementsParser.ProgramContext ctx) {
             System.out.println("Parsed: " + ctx.getText());
         }
     }

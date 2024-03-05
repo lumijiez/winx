@@ -1,0 +1,5 @@
+DatabaseAccess:
+("UserIsAuthenticated" && "UserHasPermission") => ("AccessToAdminPanel" || "AccessToModeratorPanel");
+
+GetUserList():
+("Return" : "int x, float y", "Execution Time" : "<1s");
