@@ -9,13 +9,26 @@ INT         : [0-9]+ ;
 FLOAT       : [0-9]+ '.' [0-9]* | '.' [0-9]+ ;
 
 // Puturos rules
-program         : (requirementSpec | functionSpec)+ ;
 
-requirementSpec : EXCLAM? ID
-                  (':' description)?
-                  predicate ';' ;
+program         : description?
+                  'package' ID
+                  '{'
+                  program_body
+                  '}'
+                  ;
 
-description     : DESCRIPTION;
+program_body    : (requirementSpec | functionSpec)+ ;
+
+requirementSpec : description?
+                  importance?
+                   ID '{'
+                  req_specification*
+                  result_specification*
+                  '}' ;
+
+req_specification : importance? '@' ID (logical_op ID)* ';';
+
+result_specification : 'result' importance? ID ';';
 
 predicate       : expression '=>' expression ;
 
@@ -26,27 +39,37 @@ term            : '{' expression '}'
 
 logical_op      : '&&' | '||' ;
 
-functionSpec    : EXCLAM?
-                ID'()' ':'
-                description?
-                access_modifier?
+
+
+// Function Specification
+
+functionSpec    : description?
+                importance?
+                access_modifiers?
+                ID'(' input_types? ')'
+                functionBody
+                ;
+
+functionBody    : '{'
+                specification*
                 return_types
-                '{' parameter_list '}' ';'
+                '}'
                 ;
 
-access_modifier : 'Access ' access_modifiers ';';
+input_types     : variable (',' variable)*;
 
-return_types    : 'Return' '(' return (',' return)* ')' ';' ;
+return_types    : 'return' variable (',' variable)* ';' ;
 
-return          : type ID;
-
-parameter_list  : parameter (',' parameter)* ;
-
-parameter       : STRING ':'
-                (STRING
-                | INT
-                | FLOAT)
+specification   : '@' ID ':'
+                STRING
+                ';'
                 ;
+
+// General Rules
+
+variable        : type '[]'? ID;
+
+importance      : 'critical' | 'optional' ;
 
 type            : 'INT'
                 | 'FLOAT'
@@ -57,11 +80,13 @@ type            : 'INT'
                 | 'VOID'
                 ;
 
-access_modifiers : 'PUBLIC'
-                 | 'PROTECTED'
-                 | 'PRIVATE'
-                 | 'DEFAULT'
+access_modifiers : 'public'
+                 | 'protected'
+                 | 'private'
+                 | 'default'
                  ;
+
+description     : DESCRIPTION;
 
 // Symballs
 LPAREN          : '(' ;

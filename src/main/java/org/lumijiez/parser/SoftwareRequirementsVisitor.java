@@ -17,17 +17,29 @@ public interface SoftwareRequirementsVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(SoftwareRequirementsParser.ProgramContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#program_body}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgram_body(SoftwareRequirementsParser.Program_bodyContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#requirementSpec}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#req_specification}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDescription(SoftwareRequirementsParser.DescriptionContext ctx);
+	T visitReq_specification(SoftwareRequirementsParser.Req_specificationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#result_specification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitResult_specification(SoftwareRequirementsParser.Result_specificationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#predicate}.
 	 * @param ctx the parse tree
@@ -59,11 +71,17 @@ public interface SoftwareRequirementsVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionSpec(SoftwareRequirementsParser.FunctionSpecContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#access_modifier}.
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#functionBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx);
+	T visitFunctionBody(SoftwareRequirementsParser.FunctionBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#input_types}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInput_types(SoftwareRequirementsParser.Input_typesContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#return_types}.
 	 * @param ctx the parse tree
@@ -71,23 +89,23 @@ public interface SoftwareRequirementsVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturn_types(SoftwareRequirementsParser.Return_typesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#return}.
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#specification}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturn(SoftwareRequirementsParser.ReturnContext ctx);
+	T visitSpecification(SoftwareRequirementsParser.SpecificationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#parameter_list}.
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#variable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParameter_list(SoftwareRequirementsParser.Parameter_listContext ctx);
+	T visitVariable(SoftwareRequirementsParser.VariableContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#parameter}.
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#importance}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParameter(SoftwareRequirementsParser.ParameterContext ctx);
+	T visitImportance(SoftwareRequirementsParser.ImportanceContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#type}.
 	 * @param ctx the parse tree
@@ -100,4 +118,10 @@ public interface SoftwareRequirementsVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDescription(SoftwareRequirementsParser.DescriptionContext ctx);
 }

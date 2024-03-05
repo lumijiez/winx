@@ -1,9 +1,22 @@
-!DatabaseAccess:
-~This is for comments, or descriptions~
-{"UserIsAuthenticated" && "UserHasPermission"} => {"AccessToAdminPanel" || "AccessToModeratorPanel"};
+package Database {
 
-GetUserList():
-~This is for comments, or descriptions~
-Access PRIVATE;
-Return (INT x, FLOAT v);
-{"Execution Time" : "<1s", "MaxValue" : 100};
+    ~This is for comments, or descriptions~
+    critical DatabaseAccess {
+        optional @UserHasAdminAccess;
+        critical @UserIsNotBanned;
+
+        result optional DatabaseAdminPanel;
+        result critical DatabaseVisualizerPanel;
+        result Clock;
+    }
+
+    ~This is for comments, or explanations~
+    critical public GetUserList(FLOAT[] x, STRING ag) {
+        @ExecTime : "10s";
+        @MaxReturnVals : "10s";
+        return INT x;
+    }
+
+}
+
+

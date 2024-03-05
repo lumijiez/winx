@@ -18,6 +18,16 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 */
 	void exitProgram(SoftwareRequirementsParser.ProgramContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#program_body}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgram_body(SoftwareRequirementsParser.Program_bodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#program_body}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgram_body(SoftwareRequirementsParser.Program_bodyContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#requirementSpec}.
 	 * @param ctx the parse tree
 	 */
@@ -28,15 +38,25 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 */
 	void exitRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#req_specification}.
 	 * @param ctx the parse tree
 	 */
-	void enterDescription(SoftwareRequirementsParser.DescriptionContext ctx);
+	void enterReq_specification(SoftwareRequirementsParser.Req_specificationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#req_specification}.
 	 * @param ctx the parse tree
 	 */
-	void exitDescription(SoftwareRequirementsParser.DescriptionContext ctx);
+	void exitReq_specification(SoftwareRequirementsParser.Req_specificationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#result_specification}.
+	 * @param ctx the parse tree
+	 */
+	void enterResult_specification(SoftwareRequirementsParser.Result_specificationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#result_specification}.
+	 * @param ctx the parse tree
+	 */
+	void exitResult_specification(SoftwareRequirementsParser.Result_specificationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#predicate}.
 	 * @param ctx the parse tree
@@ -88,15 +108,25 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 */
 	void exitFunctionSpec(SoftwareRequirementsParser.FunctionSpecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#access_modifier}.
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#functionBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx);
+	void enterFunctionBody(SoftwareRequirementsParser.FunctionBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#access_modifier}.
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#functionBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx);
+	void exitFunctionBody(SoftwareRequirementsParser.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#input_types}.
+	 * @param ctx the parse tree
+	 */
+	void enterInput_types(SoftwareRequirementsParser.Input_typesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#input_types}.
+	 * @param ctx the parse tree
+	 */
+	void exitInput_types(SoftwareRequirementsParser.Input_typesContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#return_types}.
 	 * @param ctx the parse tree
@@ -108,35 +138,35 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 */
 	void exitReturn_types(SoftwareRequirementsParser.Return_typesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#return}.
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#specification}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturn(SoftwareRequirementsParser.ReturnContext ctx);
+	void enterSpecification(SoftwareRequirementsParser.SpecificationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#return}.
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#specification}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn(SoftwareRequirementsParser.ReturnContext ctx);
+	void exitSpecification(SoftwareRequirementsParser.SpecificationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#parameter_list}.
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#variable}.
 	 * @param ctx the parse tree
 	 */
-	void enterParameter_list(SoftwareRequirementsParser.Parameter_listContext ctx);
+	void enterVariable(SoftwareRequirementsParser.VariableContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#parameter_list}.
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#variable}.
 	 * @param ctx the parse tree
 	 */
-	void exitParameter_list(SoftwareRequirementsParser.Parameter_listContext ctx);
+	void exitVariable(SoftwareRequirementsParser.VariableContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#parameter}.
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#importance}.
 	 * @param ctx the parse tree
 	 */
-	void enterParameter(SoftwareRequirementsParser.ParameterContext ctx);
+	void enterImportance(SoftwareRequirementsParser.ImportanceContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#parameter}.
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#importance}.
 	 * @param ctx the parse tree
 	 */
-	void exitParameter(SoftwareRequirementsParser.ParameterContext ctx);
+	void exitImportance(SoftwareRequirementsParser.ImportanceContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#type}.
 	 * @param ctx the parse tree
@@ -157,4 +187,14 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * @param ctx the parse tree
+	 */
+	void enterDescription(SoftwareRequirementsParser.DescriptionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * @param ctx the parse tree
+	 */
+	void exitDescription(SoftwareRequirementsParser.DescriptionContext ctx);
 }
