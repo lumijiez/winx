@@ -1,5 +1,9 @@
-DatabaseAccess:
-("UserIsAuthenticated" && "UserHasPermission") => ("AccessToAdminPanel" || "AccessToModeratorPanel");
+!DatabaseAccess:
+~This is for comments, or descriptions~
+{"UserIsAuthenticated" && "UserHasPermission"} => {"AccessToAdminPanel" || "AccessToModeratorPanel"};
 
 GetUserList():
-("Return" : "int x, float y", "Execution Time" : "<1s");
+~This is for comments, or descriptions~
+Access PRIVATE;
+Return (INT x, FLOAT v);
+{"Execution Time" : "<1s", "MaxValue" : 100};

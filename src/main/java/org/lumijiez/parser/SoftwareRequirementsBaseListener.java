@@ -29,13 +29,25 @@ public class SoftwareRequirementsBaseListener implements SoftwareRequirementsLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRequirement(SoftwareRequirementsParser.RequirementContext ctx) { }
+	@Override public void enterRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRequirement(SoftwareRequirementsParser.RequirementContext ctx) { }
+	@Override public void exitRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDescription(SoftwareRequirementsParser.DescriptionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDescription(SoftwareRequirementsParser.DescriptionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -101,6 +113,42 @@ public class SoftwareRequirementsBaseListener implements SoftwareRequirementsLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturn_types(SoftwareRequirementsParser.Return_typesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturn_types(SoftwareRequirementsParser.Return_typesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturn(SoftwareRequirementsParser.ReturnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturn(SoftwareRequirementsParser.ReturnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterParameter_list(SoftwareRequirementsParser.Parameter_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -120,6 +168,30 @@ public class SoftwareRequirementsBaseListener implements SoftwareRequirementsLis
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParameter(SoftwareRequirementsParser.ParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterType(SoftwareRequirementsParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType(SoftwareRequirementsParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

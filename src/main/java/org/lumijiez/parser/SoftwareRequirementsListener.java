@@ -1,4 +1,5 @@
-package org.lumijiez.parser;// Generated from D:/Source/JavaProjects/dsl-formal-requirements/src/grammars/SoftwareRequirements.g4 by ANTLR 4.13.1
+// Generated from D:/Source/JavaProjects/dsl-formal-requirements/src/grammars/SoftwareRequirements.g4 by ANTLR 4.13.1
+package org.lumijiez.parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -17,15 +18,25 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 */
 	void exitProgram(SoftwareRequirementsParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#requirement}.
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#requirementSpec}.
 	 * @param ctx the parse tree
 	 */
-	void enterRequirement(SoftwareRequirementsParser.RequirementContext ctx);
+	void enterRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#requirement}.
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#requirementSpec}.
 	 * @param ctx the parse tree
 	 */
-	void exitRequirement(SoftwareRequirementsParser.RequirementContext ctx);
+	void exitRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * @param ctx the parse tree
+	 */
+	void enterDescription(SoftwareRequirementsParser.DescriptionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#description}.
+	 * @param ctx the parse tree
+	 */
+	void exitDescription(SoftwareRequirementsParser.DescriptionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#predicate}.
 	 * @param ctx the parse tree
@@ -77,6 +88,36 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 */
 	void exitFunctionSpec(SoftwareRequirementsParser.FunctionSpecContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#access_modifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#access_modifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitAccess_modifier(SoftwareRequirementsParser.Access_modifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#return_types}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_types(SoftwareRequirementsParser.Return_typesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#return_types}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_types(SoftwareRequirementsParser.Return_typesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#return}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn(SoftwareRequirementsParser.ReturnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#return}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn(SoftwareRequirementsParser.ReturnContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#parameter_list}.
 	 * @param ctx the parse tree
 	 */
@@ -96,4 +137,24 @@ public interface SoftwareRequirementsListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParameter(SoftwareRequirementsParser.ParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(SoftwareRequirementsParser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(SoftwareRequirementsParser.TypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SoftwareRequirementsParser#access_modifiers}.
+	 * @param ctx the parse tree
+	 */
+	void enterAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SoftwareRequirementsParser#access_modifiers}.
+	 * @param ctx the parse tree
+	 */
+	void exitAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx);
 }
