@@ -1,11 +1,11 @@
 grammar SoftwareRequirements;
 
-// Lexer rules
+// Loser rules
 ID          : [a-zA-Z]+ ;
 STRING      : '"' ~'"'* '"' ;
 WS          : [ \t\r\n]+ -> skip ;
 
-// Parser rules
+// Puturos rules
 program         : (requirement | functionSpec)+ ;
 
 requirement     : ID ':' predicate ';' ;
@@ -26,7 +26,7 @@ parameter_list  : parameter (',' parameter)* ;
 
 parameter       : STRING ':' STRING ;
 
-// Define symbols
+// Symballs
 LPAREN          : '(' ;
 RPAREN          : ')' ;
 COLON           : ':' ;
