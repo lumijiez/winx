@@ -1,22 +1,38 @@
+~A package defines a full set of specifications for a general set of features~
 package Database {
 
-    ~This is for comments, or descriptions~
-    critical DatabaseAccess {
-        optional @UserHasAdminAccess;
-        critical @UserIsNotBanned;
+    ~An interface holds an abstract structure to be implemented in a specification~
+    critical interface Database {
 
-        result optional DatabaseAdminPanel;
-        result critical DatabaseVisualizerPanel;
-        result Clock;
+        ~This is a variably abstract functional specification~
+        critical public GetUserList(FLOAT[] x, STRING ag) {
+            @ExecTime : "10s";
+            @MaxReturnVals : "10s";
+            return INT x;
+        }
     }
 
-    ~This is for comments, or explanations~
-    critical public GetUserList(FLOAT[] x, STRING ag) {
-        @ExecTime : "10s";
-        @MaxReturnVals : "10s";
-        return INT x;
-    }
+    ~A specification is a concrete implementation of requirement specifications~
+    ~It might or might not implement an interface~
+    specification DatabaseAccess implements Database {
 
+        ~This is a concrete non-functional specification~
+        critical DatabaseAccessMember {
+            optional @UserHasAdminAccess;
+            critical @UserIsNotBanned;
+
+            result optional DatabaseAdminPanel;
+            result critical DatabaseVisualizerPanel;
+            result Clock;
+        }
+
+        ~This is a concrete functional specification, it might implement an interface~
+        critical public GetUserList(FLOAT[] x, STRING ag) implements DatabaseAccessImpl {
+            @ExecTime : "10s";
+            @MaxReturnVals : "10s";
+            return INT x;
+        }
+    }
 }
 
 

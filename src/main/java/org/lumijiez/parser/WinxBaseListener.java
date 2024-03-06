@@ -1,4 +1,4 @@
-// Generated from D:/Source/JavaProjects/dsl-formal-requirements/src/grammars/SoftwareRequirements.g4 by ANTLR 4.13.1
+// Generated from D:/Source/JavaProjects/dsl-formal-requirements/src/grammars/Winx.g4 by ANTLR 4.13.1
 package org.lumijiez.parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -6,240 +6,264 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link SoftwareRequirementsListener},
+ * This class provides an empty implementation of {@link WinxListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
 @SuppressWarnings("CheckReturnValue")
-public class SoftwareRequirementsBaseListener implements SoftwareRequirementsListener {
+public class WinxBaseListener implements WinxListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(SoftwareRequirementsParser.ProgramContext ctx) { }
+	@Override public void enterWinx(WinxParser.WinxContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(SoftwareRequirementsParser.ProgramContext ctx) { }
+	@Override public void exitWinx(WinxParser.WinxContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram_body(SoftwareRequirementsParser.Program_bodyContext ctx) { }
+	@Override public void enterBody(WinxParser.BodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram_body(SoftwareRequirementsParser.Program_bodyContext ctx) { }
+	@Override public void exitBody(WinxParser.BodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx) { }
+	@Override public void enterPackage(WinxParser.PackageContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRequirementSpec(SoftwareRequirementsParser.RequirementSpecContext ctx) { }
+	@Override public void exitPackage(WinxParser.PackageContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReq_specification(SoftwareRequirementsParser.Req_specificationContext ctx) { }
+	@Override public void enterInterface(WinxParser.InterfaceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReq_specification(SoftwareRequirementsParser.Req_specificationContext ctx) { }
+	@Override public void exitInterface(WinxParser.InterfaceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterResult_specification(SoftwareRequirementsParser.Result_specificationContext ctx) { }
+	@Override public void enterSpecification(WinxParser.SpecificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitResult_specification(SoftwareRequirementsParser.Result_specificationContext ctx) { }
+	@Override public void exitSpecification(WinxParser.SpecificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPredicate(SoftwareRequirementsParser.PredicateContext ctx) { }
+	@Override public void enterInterface_body(WinxParser.Interface_bodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPredicate(SoftwareRequirementsParser.PredicateContext ctx) { }
+	@Override public void exitInterface_body(WinxParser.Interface_bodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(SoftwareRequirementsParser.ExpressionContext ctx) { }
+	@Override public void enterSpecification_body(WinxParser.Specification_bodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(SoftwareRequirementsParser.ExpressionContext ctx) { }
+	@Override public void exitSpecification_body(WinxParser.Specification_bodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTerm(SoftwareRequirementsParser.TermContext ctx) { }
+	@Override public void enterRequirementSpec(WinxParser.RequirementSpecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTerm(SoftwareRequirementsParser.TermContext ctx) { }
+	@Override public void exitRequirementSpec(WinxParser.RequirementSpecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogical_op(SoftwareRequirementsParser.Logical_opContext ctx) { }
+	@Override public void enterReq_specification(WinxParser.Req_specificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogical_op(SoftwareRequirementsParser.Logical_opContext ctx) { }
+	@Override public void exitReq_specification(WinxParser.Req_specificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionSpec(SoftwareRequirementsParser.FunctionSpecContext ctx) { }
+	@Override public void enterResult_specification(WinxParser.Result_specificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionSpec(SoftwareRequirementsParser.FunctionSpecContext ctx) { }
+	@Override public void exitResult_specification(WinxParser.Result_specificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionBody(SoftwareRequirementsParser.FunctionBodyContext ctx) { }
+	@Override public void enterLogical_op(WinxParser.Logical_opContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionBody(SoftwareRequirementsParser.FunctionBodyContext ctx) { }
+	@Override public void exitLogical_op(WinxParser.Logical_opContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInput_types(SoftwareRequirementsParser.Input_typesContext ctx) { }
+	@Override public void enterFunctionSpec(WinxParser.FunctionSpecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInput_types(SoftwareRequirementsParser.Input_typesContext ctx) { }
+	@Override public void exitFunctionSpec(WinxParser.FunctionSpecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturn_types(SoftwareRequirementsParser.Return_typesContext ctx) { }
+	@Override public void enterFunctionBody(WinxParser.FunctionBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturn_types(SoftwareRequirementsParser.Return_typesContext ctx) { }
+	@Override public void exitFunctionBody(WinxParser.FunctionBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpecification(SoftwareRequirementsParser.SpecificationContext ctx) { }
+	@Override public void enterInput_types(WinxParser.Input_typesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSpecification(SoftwareRequirementsParser.SpecificationContext ctx) { }
+	@Override public void exitInput_types(WinxParser.Input_typesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariable(SoftwareRequirementsParser.VariableContext ctx) { }
+	@Override public void enterReturn_types(WinxParser.Return_typesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariable(SoftwareRequirementsParser.VariableContext ctx) { }
+	@Override public void exitReturn_types(WinxParser.Return_typesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImportance(SoftwareRequirementsParser.ImportanceContext ctx) { }
+	@Override public void enterSpecificationEntry(WinxParser.SpecificationEntryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImportance(SoftwareRequirementsParser.ImportanceContext ctx) { }
+	@Override public void exitSpecificationEntry(WinxParser.SpecificationEntryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType(SoftwareRequirementsParser.TypeContext ctx) { }
+	@Override public void enterVariable(WinxParser.VariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType(SoftwareRequirementsParser.TypeContext ctx) { }
+	@Override public void exitVariable(WinxParser.VariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx) { }
+	@Override public void enterImportance(WinxParser.ImportanceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAccess_modifiers(SoftwareRequirementsParser.Access_modifiersContext ctx) { }
+	@Override public void exitImportance(WinxParser.ImportanceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDescription(SoftwareRequirementsParser.DescriptionContext ctx) { }
+	@Override public void enterType(WinxParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDescription(SoftwareRequirementsParser.DescriptionContext ctx) { }
+	@Override public void exitType(WinxParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAccess_modifiers(WinxParser.Access_modifiersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAccess_modifiers(WinxParser.Access_modifiersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDescription(WinxParser.DescriptionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDescription(WinxParser.DescriptionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
