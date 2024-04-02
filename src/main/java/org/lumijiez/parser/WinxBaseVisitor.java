@@ -53,21 +53,14 @@ public class WinxBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements W
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInterface_body(WinxParser.Interface_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSpec_body(WinxParser.Spec_bodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSpecification_body(WinxParser.Specification_bodyContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitRequirementSpec(WinxParser.RequirementSpecContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRequirement_spec(WinxParser.Requirement_specContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,14 +88,14 @@ public class WinxBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements W
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionSpec(WinxParser.FunctionSpecContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunction_spec(WinxParser.Function_specContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionBody(WinxParser.FunctionBodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunction_body(WinxParser.Function_bodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -123,7 +116,7 @@ public class WinxBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements W
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSpecificationEntry(WinxParser.SpecificationEntryContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSpecification_entry(WinxParser.Specification_entryContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -158,5 +151,5 @@ public class WinxBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements W
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDescription(WinxParser.DescriptionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComment(WinxParser.CommentContext ctx) { return visitChildren(ctx); }
 }

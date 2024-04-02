@@ -3,78 +3,51 @@ grammar Winx;
 // Lexer rules
 ID          : [a-zA-Z]+ ;
 STRING      : '"' ~'"'* '"' ;
-DESCRIPTION : '~' ~[~]*? '~' ;
+NEWLINE     : [\r\n]+ -> skip;
+COMMENT     : ('~' ~[~]*? '~') | ('//' ~[\r\n]* NEWLINE) ;
 WS          : [ \t\r\n]+ -> skip ;
 INT         : [0-9]+ ;
 FLOAT       : [0-9]+ '.' [0-9]* | '.' [0-9]+ ;
 
 // Parser rules
 
-winx                    :  (package | DESCRIPTION)+;
+winx                    :  (package | COMMENT)+;
 
-body                    : (
-                        interface
-                        | specification
-                        | DESCRIPTION
-                        )+ ;
+body                    : (interface | specification| COMMENT)+ ;
 
 // Hierarchies
 
 package                 : 'package' ID '{' body '}' ;
 
-interface               : importance?
-                        access_modifiers?
-                        'interface'
-                        ID '{' interface_body '}' ;
+interface               : importance? access_modifiers? 'interface' ID '{' spec_body '}' ;
 
-specification           : 'specification'
-                        ID ('implements' ID)*
-                        '{' specification_body '}' ;
+specification           : 'specification' ID ('implements' ID)? '{' spec_body '}' ;
 
-interface_body          : (requirementSpec | functionSpec)+ ;
+spec_body               : (requirement_spec | function_spec)+ ;
 
-specification_body      : (requirementSpec | functionSpec)+ ;
 
 
 // Non-functional Requirements
 
-requirementSpec         : description?
-                        importance?
-                        ID '{'
-                        req_specification*
-                        result_specification*
-                        '}' ;
+requirement_spec        : comment? importance? ID '{' req_specification* result_specification* '}' ;
 
-req_specification       : importance? '@' ID (logical_op ID)* ';' ;
+req_specification       : comment? importance? '@' ID (logical_op ID)* ';' ;
 
-result_specification    : 'result' importance? ID ';' ;
+result_specification    : comment? 'result' importance? ID ';' ;
 
 logical_op              : 'AND' | 'OR' ;
 
 // Functional Requirements
 
-functionSpec            : description?
-                        importance?
-                        access_modifiers?
-                        ID'(' input_types? ')'
-                        ('implements' ID)*
-                        functionBody
-                        ;
+function_spec            : comment? importance? access_modifiers? ID'(' input_types? ')' ('implements' ID)? function_body;
 
-functionBody            : '{'
-                        specificationEntry*
-                        return_types
-                        '}'
-                        ;
+function_body            : '{' specification_entry* return_types '}';
 
-input_types             : variable (',' variable)* ;
+input_types              : variable (',' variable)* ;
 
-return_types            : 'return' variable (',' variable)* ';' ;
+return_types             : 'return' variable (',' variable)* ';' ;
 
-specificationEntry      : '@' ID ':'
-                        STRING
-                        ';'
-                        ;
+specification_entry      : comment? '@' ID ':'STRING';';
 
 // General Rules
 
@@ -89,17 +62,17 @@ type                    : 'INT'
                         | 'BOOLEAN'
                         | 'CHAR'
                         | 'VOID'
-                        ;
+                        | STRING;
 
 access_modifiers        : 'public'
                         | 'protected'
                         | 'private'
-                        | 'default'
-                        ;
+                        | 'default';
 
-description             : DESCRIPTION;
+comment                 : COMMENT;
 
-// Symballs
+
+// Symbols
 LPAREN                  : '(' ;
 RPAREN                  : ')' ;
 COLON                   : ':' ;

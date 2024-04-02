@@ -31,7 +31,7 @@ public class Main {
     static class SoftwareReqParseTree extends WinxBaseListener {
         @Override
         public void enterWinx(WinxParser.WinxContext ctx) {
-            System.out.println("Parsed: " + ctx.getText());
+            System.out.println("Parsed! \n\n" + ctx.getText());
         }
     }
 }

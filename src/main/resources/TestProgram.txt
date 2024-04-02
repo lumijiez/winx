@@ -4,11 +4,11 @@ package Database {
     ~An interface holds an abstract structure to be implemented in a specification~
     critical interface Database {
 
-        ~This is a variably abstract functional specification~
+        // lol
         critical public GetUserList(FLOAT[] x, STRING ag) {
             @ExecTime : "10s";
             @MaxReturnVals : "10s";
-            return INT x;
+            return "CustomDataType" x;
         }
     }
 

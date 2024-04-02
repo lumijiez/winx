@@ -41,23 +41,17 @@ public interface WinxVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSpecification(WinxParser.SpecificationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WinxParser#interface_body}.
+	 * Visit a parse tree produced by {@link WinxParser#spec_body}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInterface_body(WinxParser.Interface_bodyContext ctx);
+	T visitSpec_body(WinxParser.Spec_bodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WinxParser#specification_body}.
+	 * Visit a parse tree produced by {@link WinxParser#requirement_spec}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSpecification_body(WinxParser.Specification_bodyContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link WinxParser#requirementSpec}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRequirementSpec(WinxParser.RequirementSpecContext ctx);
+	T visitRequirement_spec(WinxParser.Requirement_specContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WinxParser#req_specification}.
 	 * @param ctx the parse tree
@@ -77,17 +71,17 @@ public interface WinxVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLogical_op(WinxParser.Logical_opContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WinxParser#functionSpec}.
+	 * Visit a parse tree produced by {@link WinxParser#function_spec}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionSpec(WinxParser.FunctionSpecContext ctx);
+	T visitFunction_spec(WinxParser.Function_specContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WinxParser#functionBody}.
+	 * Visit a parse tree produced by {@link WinxParser#function_body}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionBody(WinxParser.FunctionBodyContext ctx);
+	T visitFunction_body(WinxParser.Function_bodyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WinxParser#input_types}.
 	 * @param ctx the parse tree
@@ -101,11 +95,11 @@ public interface WinxVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturn_types(WinxParser.Return_typesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WinxParser#specificationEntry}.
+	 * Visit a parse tree produced by {@link WinxParser#specification_entry}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSpecificationEntry(WinxParser.SpecificationEntryContext ctx);
+	T visitSpecification_entry(WinxParser.Specification_entryContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WinxParser#variable}.
 	 * @param ctx the parse tree
@@ -131,9 +125,9 @@ public interface WinxVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAccess_modifiers(WinxParser.Access_modifiersContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WinxParser#description}.
+	 * Visit a parse tree produced by {@link WinxParser#comment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDescription(WinxParser.DescriptionContext ctx);
+	T visitComment(WinxParser.CommentContext ctx);
 }
