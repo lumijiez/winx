@@ -18,9 +18,9 @@ public class WinxCollector extends WinxBaseVisitor<Void> {
     public Void visitPackage(WinxParser.PackageContext ctx) {
         String packageName = ctx.ID().getText();
         currentPackage = new Package(packageName);
-        visitChildren(ctx);  // Recursively visit children to fill the package
+        visitChildren(ctx);
         packages.add(currentPackage);
-        currentPackage = null;  // Reset after finishing this package
+        currentPackage = null;
         return null;
     }
 
@@ -28,9 +28,9 @@ public class WinxCollector extends WinxBaseVisitor<Void> {
     public Void visitInterface(WinxParser.InterfaceContext ctx) {
         String interfaceName = ctx.ID().getText();
         currentInterface = new Interface(interfaceName);
-        visitChildren(ctx);  // Recursively visit children to fill the interface
+        visitChildren(ctx);
         currentPackage.addInterface(currentInterface);
-        currentInterface = null;  // Reset after finishing this interface
+        currentInterface = null;
         return null;
     }
 
