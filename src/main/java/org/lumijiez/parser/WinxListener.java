@@ -18,16 +18,6 @@ public interface WinxListener extends ParseTreeListener {
 	 */
 	void exitWinx(WinxParser.WinxContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WinxParser#body}.
-	 * @param ctx the parse tree
-	 */
-	void enterBody(WinxParser.BodyContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link WinxParser#body}.
-	 * @param ctx the parse tree
-	 */
-	void exitBody(WinxParser.BodyContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link WinxParser#package}.
 	 * @param ctx the parse tree
 	 */
@@ -37,6 +27,16 @@ public interface WinxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPackage(WinxParser.PackageContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link WinxParser#body}.
+	 * @param ctx the parse tree
+	 */
+	void enterBody(WinxParser.BodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link WinxParser#body}.
+	 * @param ctx the parse tree
+	 */
+	void exitBody(WinxParser.BodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link WinxParser#interface}.
 	 * @param ctx the parse tree
@@ -57,6 +57,16 @@ public interface WinxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSpecification(WinxParser.SpecificationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link WinxParser#impls}.
+	 * @param ctx the parse tree
+	 */
+	void enterImpls(WinxParser.ImplsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link WinxParser#impls}.
+	 * @param ctx the parse tree
+	 */
+	void exitImpls(WinxParser.ImplsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link WinxParser#spec_body}.
 	 * @param ctx the parse tree
@@ -98,16 +108,6 @@ public interface WinxListener extends ParseTreeListener {
 	 */
 	void exitResult_specification(WinxParser.Result_specificationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WinxParser#logical_op}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogical_op(WinxParser.Logical_opContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link WinxParser#logical_op}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogical_op(WinxParser.Logical_opContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link WinxParser#function_spec}.
 	 * @param ctx the parse tree
 	 */
@@ -138,15 +138,15 @@ public interface WinxListener extends ParseTreeListener {
 	 */
 	void exitInput_types(WinxParser.Input_typesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WinxParser#return_types}.
+	 * Enter a parse tree produced by {@link WinxParser#return_type}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturn_types(WinxParser.Return_typesContext ctx);
+	void enterReturn_type(WinxParser.Return_typeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WinxParser#return_types}.
+	 * Exit a parse tree produced by {@link WinxParser#return_type}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn_types(WinxParser.Return_typesContext ctx);
+	void exitReturn_type(WinxParser.Return_typeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link WinxParser#specification_entry}.
 	 * @param ctx the parse tree
@@ -198,13 +198,13 @@ public interface WinxListener extends ParseTreeListener {
 	 */
 	void exitAccess_modifiers(WinxParser.Access_modifiersContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WinxParser#comment}.
+	 * Enter a parse tree produced by {@link WinxParser#logical_op}.
 	 * @param ctx the parse tree
 	 */
-	void enterComment(WinxParser.CommentContext ctx);
+	void enterLogical_op(WinxParser.Logical_opContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WinxParser#comment}.
+	 * Exit a parse tree produced by {@link WinxParser#logical_op}.
 	 * @param ctx the parse tree
 	 */
-	void exitComment(WinxParser.CommentContext ctx);
+	void exitLogical_op(WinxParser.Logical_opContext ctx);
 }

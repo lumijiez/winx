@@ -2,83 +2,74 @@ grammar Winx;
 
 // Lexer rules
 ID          : [a-zA-Z]+ ;
-STRING      : '"' ~'"'* '"' ;
-NEWLINE     : [\r\n]+ -> skip;
-COMMENT     : ('~' ~[~]*? '~') | ('//' ~[\r\n]* NEWLINE) ;
-WS          : [ \t\r\n]+ -> skip ;
 INT         : [0-9]+ ;
 FLOAT       : [0-9]+ '.' [0-9]* | '.' [0-9]+ ;
+STRING      : '"' ('\\' ["\\] | ~["\\])* '"';
+WS          : [ \t\r\n]+ -> skip ;
+
+// Flexible handling of comments
+COMMENT     : ('~' .*? '~') -> channel(HIDDEN);
+LINE_COMMENT: '//' ~[\r\n]* -> channel(HIDDEN);
 
 // Parser rules
+winx        : package+ ;
 
-winx                    :  (package | COMMENT)+;
+package     : 'package' ID '{' body '}' ;
 
-body                    : (interface | specification| COMMENT)+ ;
+body        : (interface | specification)* ;
 
-// Hierarchies
+interface   : importance? 'interface' ID '{' spec_body '}' ;
 
-package                 : 'package' ID '{' body '}' ;
+specification: 'specification' ID impls? '{' spec_body '}' ;
 
-interface               : importance? access_modifiers? 'interface' ID '{' spec_body '}' ;
+impls : ('implements' ID) ;
 
-specification           : 'specification' ID ('implements' ID)? '{' spec_body '}' ;
+spec_body   : (requirement_spec | function_spec)* ;
 
-spec_body               : (requirement_spec | function_spec)+ ;
+requirement_spec: importance? ID '{' req_specification* result_specification* '}' ;
 
+req_specification: importance? '@' ID (logical_op ID)* ';' ;
 
+result_specification: 'result' importance? ID ';' ;
 
-// Non-functional Requirements
+function_spec: importance? access_modifiers? ID '(' input_types? ')' impls? function_body ;
 
-requirement_spec        : comment? importance? ID '{' req_specification* result_specification* '}' ;
+function_body: '{' specification_entry* return_type '}';
 
-req_specification       : comment? importance? '@' ID (logical_op ID)* ';' ;
+input_types  : variable (',' variable)* ;
 
-result_specification    : comment? 'result' importance? ID ';' ;
+return_type : 'return' variable ';' ;
 
-logical_op              : 'AND' | 'OR' ;
+specification_entry: '@' ID ':' STRING ';' ;
 
-// Functional Requirements
+variable    : type '[]'? ID;
 
-function_spec            : comment? importance? access_modifiers? ID'(' input_types? ')' ('implements' ID)? function_body;
+importance  : 'critical' | 'optional' ;
 
-function_body            : '{' specification_entry* return_types '}';
+type        : 'INT'
+            | 'FLOAT'
+            | 'DOUBLE'
+            | 'STRING'
+            | 'BOOLEAN'
+            | 'CHAR'
+            | 'VOID'
+            | STRING;
 
-input_types              : variable (',' variable)* ;
+access_modifiers: 'public'
+                | 'protected'
+                | 'private'
+                | 'default';
 
-return_types             : 'return' variable (',' variable)* ';' ;
-
-specification_entry      : comment? '@' ID ':'STRING';';
-
-// General Rules
-
-variable                : type '[]'? ID;
-
-importance              : 'critical' | 'optional' ;
-
-type                    : 'INT'
-                        | 'FLOAT'
-                        | 'DOUBLE'
-                        | 'STRING'
-                        | 'BOOLEAN'
-                        | 'CHAR'
-                        | 'VOID'
-                        | STRING;
-
-access_modifiers        : 'public'
-                        | 'protected'
-                        | 'private'
-                        | 'default';
-
-comment                 : COMMENT;
-
+// Logical operators if needed for parsing complexity within annotations
+logical_op  : 'AND' | 'OR';
 
 // Symbols
-LPAREN                  : '(' ;
-RPAREN                  : ')' ;
-COLON                   : ':' ;
-SEMICOLON               : ';' ;
-COMMA                   : ',' ;
-LBRACE                  : '{' ;
-RBRACE                  : '}' ;
-TILDE                   : '~' ;
-EXCLAM                  : '!' ;
+LPAREN      : '(';
+RPAREN      : ')';
+COLON       : ':';
+SEMICOLON   : ';';
+COMMA       : ',';
+LBRACE      : '{';
+RBRACE      : '}';
+TILDE       : '~';
+EXCLAM      : '!';

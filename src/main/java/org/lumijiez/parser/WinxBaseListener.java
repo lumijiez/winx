@@ -29,18 +29,6 @@ public class WinxBaseListener implements WinxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBody(WinxParser.BodyContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBody(WinxParser.BodyContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterPackage(WinxParser.PackageContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -48,6 +36,18 @@ public class WinxBaseListener implements WinxListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPackage(WinxParser.PackageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBody(WinxParser.BodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBody(WinxParser.BodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -72,6 +72,18 @@ public class WinxBaseListener implements WinxListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSpecification(WinxParser.SpecificationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterImpls(WinxParser.ImplsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImpls(WinxParser.ImplsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -125,18 +137,6 @@ public class WinxBaseListener implements WinxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogical_op(WinxParser.Logical_opContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLogical_op(WinxParser.Logical_opContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFunction_spec(WinxParser.Function_specContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -173,13 +173,13 @@ public class WinxBaseListener implements WinxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturn_types(WinxParser.Return_typesContext ctx) { }
+	@Override public void enterReturn_type(WinxParser.Return_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturn_types(WinxParser.Return_typesContext ctx) { }
+	@Override public void exitReturn_type(WinxParser.Return_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -245,13 +245,13 @@ public class WinxBaseListener implements WinxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComment(WinxParser.CommentContext ctx) { }
+	@Override public void enterLogical_op(WinxParser.Logical_opContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComment(WinxParser.CommentContext ctx) { }
+	@Override public void exitLogical_op(WinxParser.Logical_opContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
