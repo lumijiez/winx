@@ -32,6 +32,25 @@ package Database {
             @MaxReturnVals : "10s";
             return INT x;
         }
+
+        critical public GetUserdList(FLOAT[] x, STRING ag) implements Database {
+                    @ExecTime : "10s";
+                    @MaxReturnVals : "10s";
+                    return INT x;
+                }
+
+        critical public GetUserdfList(FLOAT[] x, STRING ag) implements Database {
+                    @ExecTime : "10s";
+                    @MaxReturnVals : "10s";
+                    return INT x;
+                }
+
+        critical public GetUsesfrList(FLOAT[] x, STRING ag) implements Database {
+                    @ExecTime : "10s";
+                    @MaxReturnVals : "10s";
+                    return INT x;
+                }
+
     }
 }
 

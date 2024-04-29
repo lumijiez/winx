@@ -57,6 +57,10 @@ public class WinxCollector extends WinxBaseVisitor<Void> {
 
         function.addReturnType(new Variable(ctx.function_body().return_type().variable().type().getText(), ctx.function_body().return_type().variable().ID().getText()));
 
+        if (ctx.importance() != null) {
+            function.setImportance(ctx.importance().getText());
+        }
+
         if (ctx.impls() != null) function.setImplemented_interface(ctx.impls().ID().getText());
 
         if (ctx.function_body().specification_entry() != null)

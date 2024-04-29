@@ -1,5 +1,6 @@
 package org.lumijiez;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.lumijiez.models.Package;
@@ -8,11 +9,13 @@ import org.lumijiez.parser.WinxParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,17 +41,36 @@ public class Main {
 
             // Retrieve the collected data and save it to JSON
             List<Package> packages = collector.getPackages();
-            saveAsJson(packages, "output.json");
+            String json = saveAsJson(packages, "output.json");
 
             System.out.println("Data successfully saved to 'output.json'.");
+
+            Path templatePath = Path.of(Objects.requireNonNull(Main.class.getResource("/graph.html")).toURI());
+            String htmlTemplate = Files.readString(templatePath);
+
+            // Replace placeholder with JSON
+            String finalHtmlContent = htmlTemplate.replace("const jsonData = null;", "const jsonData = " + json + ";");
+
+            // Save the modified HTML to a temporary file and open in a browser
+            Path tempFile = Files.createTempFile("output", ".html");
+            Files.writeString(tempFile, finalHtmlContent);
+            Desktop.getDesktop().browse(tempFile.toUri());
+
+            System.out.println("HTML with JSON data successfully opened in a browser.");
+
         } catch (IOException | URISyntaxException e) {
             System.err.println("Error processing the input file: " + e.getMessage());
         }
     }
 
-    private static void saveAsJson(List<Package> packages, String filePath) throws IOException {
+    private static String saveAsJson(List<Package> packages, String filePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        // Write JSON output to a file with pretty printing
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), packages);
+        try {
+            String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(packages);
+            Files.writeString(Paths.get(filePath), jsonString);
+            return jsonString;
+        } catch (JsonProcessingException e) {
+            throw new IOException("Failed to serialize data to JSON", e);
+        }
     }
 }

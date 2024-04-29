@@ -6,6 +6,7 @@ public class FunctionSpec {
     private final String name;
     private String access_modifier;
     private String implemented_interface = "none";
+    private String importance = "none";
     private final List<Variable> inputTypes = new ArrayList<>();
     private final List<Variable> returnTypes = new ArrayList<>();
     private final List<SpecificationEntry> specificationEntries = new ArrayList<>();
@@ -56,6 +57,14 @@ public class FunctionSpec {
 
     public void setImplemented_interface(String implemented_interface) {
         this.implemented_interface = implemented_interface;
+    }
+
+    public String getImportance() {
+        return importance;
+    }
+
+    public void setImportance(String importance) {
+        this.importance = importance;
     }
 }
 
