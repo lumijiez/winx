@@ -21,7 +21,7 @@ const CustomNodeComponent = ({data}) => {
             )}
 
 
-            <div className="flex flex-col innerBody rounded-bl-lg rounded-tr-lg divide-y sans-font"
+            <div className="flex flex-col innerBody rounded-b-lg rounded-tr-lg divide-y sans-font"
                  style={{
                      backgroundColor: data.importance === 'critical' ? '#F59975' : '#01C6C9',
                  }}>
@@ -89,38 +89,38 @@ const CustomNodeComponent = ({data}) => {
                         {data.specificationEntries && (<div>
                                 <strong>Specifications:</strong>
                                 {data.specificationEntries.map((entry, idx) => (
-                                    <div key={idx}>{entry.key}: {entry.value}</div>))}
+                                    <div key={idx}>{entry.key}: {entry.value.substring(1, entry.value.length - 1)}</div>))}
                             </div>)}
                     </div>
 
 
                     <Handle type="source" position="bottom" style={{borderRadius: 0}}/>
                 </div>
+                {data.returnTypes && (<div className="flex flex-col m-0 justify-between">
+                        <div className="bg-amber-400 p-1 rounded-b">
+                            <div className="flex">
+                                <img className="content-center mr-1" alt="outputCog" src="/output.png"
+                                     style={{width: 20 + 'px', height: 20 + 'px'}}/>
+                                <strong className="content-center">Output: </strong>
+                            </div>
+
+                            {data.returnTypes.map((ret, idx) => (
+                                <div className="text-gray-700 m-1" key={idx}>
+                                    {(ret.type.length > 1 && ret.type[0] === '"' && ret.type[ret.type.length - 1] === '"')
+                                    ? ret.type.substring(1, ret.type.length - 1) + " "
+                                    : ret.type + " "}
+                                    {ret.identifier}</div>))}
+                        </div>
+                    </div>
+                )}
             </div>
-
-
-            {data.returnTypes && (<div className="flex flex-col m-0 justify-between">
-                    <div>
-                        <div className="outerBody">
+            <div>
+                <div className="outerBody">
                             <span className="fade-in-out font-mono text-7xl text-red-700">
                                 {data.importance === "critical" ? "!" : ""}
                             </span>
-                        </div>
-                    </div>
-
-                    <div className="bg-amber-400 p-1 rounded-r">
-                        <div className="flex">
-                            <img className="content-center mr-1" alt="outputCog" src="/output.png"
-                                 style={{width: 20 + 'px', height: 20 + 'px'}}/>
-                            <strong className="content-center">Output: </strong>
-                        </div>
-
-                        {data.returnTypes.map((ret, idx) => (
-                            <div className="text-gray-700 m-1" key={idx}>{ret.type} {ret.identifier}</div>))}
-                    </div>
                 </div>
-            )}
-
+            </div>
 
         </div>);
 };

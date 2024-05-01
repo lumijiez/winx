@@ -1,57 +1,128 @@
-~A package defines a full set of specifications for a general set of features~
-package Database {
+package HospitalManagementSystem {
 
-    ~An interface holds an abstract structure to be implemented in a specification~
-    critical interface Database {
+    critical interface PatientRecords {
+        critical public FetchPatientDetails(FLOAT patientId) {
+            @ExecTime : "3s";
+            @MaxReturnVals : "1";
+            @DataFormat : "ID: %patientId,DOB: %dob";
+            @DataPrivacy : "High";
+            return "PatientDetails" details;
+        }
 
-        // lol
-        critical public GetUserList(FLOAT[] x, STRING ag) {
-            @ExecTime : "10s";
-            @MaxReturnVals : "10s";
-            return "CustomDataType" x;
+        critical public UpdatePatientRecord(FLOAT patientId, STRING updates) {
+            @ExecTime : "3s";
+            @DataIntegrity : "High";
+            @DataConcurrency : "Serializable";
+            return "UpdateConfirmation" confirmation;
         }
     }
 
-    ~A specification is a concrete implementation of requirement specifications~
-    ~It might or might not implement an interface~
-    specification DatabaseAccess implements Database {
+    critical interface AppointmentSystem {
+        critical public ScheduleAppointment(FLOAT patientId, STRING dateTime, STRING doctorId) {
+            @ExecTime : "4s";
+            @Notification : "Email";
+            @DataValidation : "TimeSlotAvailability";
+            return "AppointmentConfirmation" confirmation;
+        }
 
-        ~This is a concrete non-functional specification~
-        critical DatabaseAccessMember {
+        optional public CancelAppointment(FLOAT appointmentId) {
+            @ExecTime : "2s";
+            @CancellationFee : "NoChargeWithin24h";
+            return "CancellationConfirmation" status;
+        }
+    }
+
+    critical interface StaffManagement {
+        critical public FetchStaffDetails(FLOAT staffId) {
+            @ExecTime : "4s";
+            @MaxReturnVals : "1";
+            @DataFormat : "Staff ID: %staffId, Role: %role";
+            @AccessLevel : "HR_Only";
+            return "StaffDetails" detailList;
+        }
+
+        critical public UpdateStaffRecord(FLOAT staffId, STRING updates) {
+            @ExecTime : "4s";
+            @TransactionType : "Atomic";
+            @DataIntegrity : "EnsureConsistency";
+            return "UpdateConfirmation" status;
+        }
+
+        optional public AssignStaff(FLOAT staffId, STRING departmentId) {
+            @ExecTime : "3s";
+            @AuditTrail : "Enabled";
+            @DataLogging : "Detailed";
+            return "AssignmentConfirmation" confirmation;
+        }
+    }
+
+    specification ComprehensiveMedicalRecords implements PatientRecords {
+
+        critical ComprehensiveRecordsMember {
             optional @UserHasAdminAccess;
-            critical @UserIsNotBanned;
+            critical @UserIsNotInactive;
 
-            result optional DatabaseAdminPanel;
-            result critical DatabaseVisualizerPanel;
+            result optional AdminPanel;
+            result critical MedicalRecordsDashboard;
             result Clock;
         }
 
-        ~This is a concrete functional specification, it might implement an interface~
-        critical public GetUserList(FLOAT[] x, STRING ag) implements DatabaseAccessImpl {
-            @ExecTime : "10s";
-            @MaxReturnVals : "10s";
-            return INT x;
+        critical public FetchPatientDetails(FLOAT patientId) implements PatientRecords {
+            @ExecTime : "3s";
+            @DataCache : "Enabled";
+            @CacheExpiry : "24h";
+            return "PatientDetails" patientDetails;
         }
 
-        critical private GetUserdList(FLOAT[] x, STRING ag) implements Database {
-                    @ExecTime : "10s";
-                    @MaxReturnVals : "10s";
-                    return INT x;
-                }
+        critical public UpdatePatientRecord(FLOAT patientId, STRING updates) implements PatientRecords {
+            @ExecTime : "3s";
+            @RecordLocking : "Optimistic";
+            return "UpdateConfirmation" status;
+        }
 
-        critical public GetUserdfList(FLOAT[] x, STRING ag) implements Database {
-                    @ExecTime : "10s";
-                    @MaxReturnVals : "10s";
-                    return INT x;
-                }
+        critical public ScheduleAppointment(FLOAT patientId, STRING dateTime, STRING doctorId) implements AppointmentSystem {
+            @ExecTime : "4s";
+            @OverbookingPolicy : "Disallow";
+            return "AppointmentConfirmation" schedule;
+        }
 
-        optional public GetUsesfrList(FLOAT[] x, STRING ag) implements Database {
-                    @ExecTime : "10s";
-                    @MaxReturnVals : "10s";
-                    return INT x;
-                }
+        optional public CancelAppointment(FLOAT appointmentId) implements AppointmentSystem {
+            @ExecTime : "2s";
+            @RefundPolicy : "FullIf48hPrior";
+            return "CancellationConfirmation" status;
+        }
+    }
 
+    specification StaffAdministration implements StaffManagement {
+
+        critical StaffAdminMember {
+            optional @UserHasHRAccess;
+            critical @UserIsVerified;
+
+            result optional HRPanel;
+            result critical StaffManagementDashboard;
+            result Clock;
+        }
+
+        critical public FetchStaffDetails(FLOAT staffId) implements StaffManagement {
+            @ExecTime : "4s";
+            @DataAccess : "SecureQuery";
+            @FilterSensitiveData : "Enabled";
+            return "StaffDetails" staffDetails;
+        }
+
+        critical public UpdateStaffRecord(FLOAT staffId, STRING updates) implements StaffManagement {
+            @ExecTime : "4s";
+            @ChangeManagement : "Controlled";
+            @DataHistory : "Logged";
+            return "UpdateConfirmation" status;
+        }
+
+        optional public AssignStaff(FLOAT staffId, STRING departmentId) implements StaffManagement {
+            @ExecTime : "3s";
+            @PermissionCheck : "DepartmentHeadApproval";
+            @RealTimeUpdate : "Required";
+            return "AssignmentConfirmation" status;
+        }
     }
 }
-
-
