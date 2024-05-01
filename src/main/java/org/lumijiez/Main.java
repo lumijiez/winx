@@ -10,7 +10,6 @@ import org.lumijiez.parser.WinxParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -41,7 +40,7 @@ public class Main {
 
             // Retrieve the collected data and save it to JSON
             List<Package> packages = collector.getPackages();
-            String json = saveAsJson(packages, "output.json");
+            String json = saveAsJson(packages);
 
             System.out.println("Data successfully saved to 'output.json'.");
 
@@ -63,11 +62,11 @@ public class Main {
         }
     }
 
-    private static String saveAsJson(List<Package> packages, String filePath) throws IOException {
+    private static String saveAsJson(List<Package> packages) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(packages);
-            Files.writeString(Paths.get(filePath), jsonString);
+            Files.writeString(Paths.get("output.json"), jsonString);
             return jsonString;
         } catch (JsonProcessingException e) {
             throw new IOException("Failed to serialize data to JSON", e);

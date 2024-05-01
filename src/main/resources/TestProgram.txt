@@ -33,7 +33,7 @@ package Database {
             return INT x;
         }
 
-        critical public GetUserdList(FLOAT[] x, STRING ag) implements Database {
+        critical private GetUserdList(FLOAT[] x, STRING ag) implements Database {
                     @ExecTime : "10s";
                     @MaxReturnVals : "10s";
                     return INT x;
@@ -45,7 +45,7 @@ package Database {
                     return INT x;
                 }
 
-        critical public GetUsesfrList(FLOAT[] x, STRING ag) implements Database {
+        optional public GetUsesfrList(FLOAT[] x, STRING ag) implements Database {
                     @ExecTime : "10s";
                     @MaxReturnVals : "10s";
                     return INT x;

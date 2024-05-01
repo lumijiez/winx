@@ -26,6 +26,32 @@
         "value" : "\"10s\""
       } ]
     } ]
+  }, {
+    "name" : "DatabaseAccessImpl",
+    "functions" : [ {
+      "name" : "GetUserList",
+      "access_modifier" : "public",
+      "implemented_interface" : "none",
+      "importance" : "critical",
+      "inputTypes" : [ {
+        "type" : "FLOAT",
+        "identifier" : "x"
+      }, {
+        "type" : "STRING",
+        "identifier" : "ag"
+      } ],
+      "returnTypes" : [ {
+        "type" : "\"CustomDataType\"",
+        "identifier" : "x"
+      } ],
+      "specificationEntries" : [ {
+        "key" : "ExecTime",
+        "value" : "\"10s\""
+      }, {
+        "key" : "MaxReturnVals",
+        "value" : "\"10s\""
+      } ]
+    } ]
   } ],
   "specifications" : [ {
     "name" : "DatabaseAccess",
@@ -100,7 +126,7 @@
       "name" : "GetUserdfList",
       "access_modifier" : "public",
       "implemented_interface" : "Database",
-      "importance" : "critical",
+      "importance" : "optional",
       "inputTypes" : [ {
         "type" : "FLOAT",
         "identifier" : "x"
