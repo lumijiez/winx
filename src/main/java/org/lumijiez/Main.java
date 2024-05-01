@@ -9,7 +9,6 @@ import org.lumijiez.parser.WinxParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -21,55 +20,57 @@ import java.util.Objects;
 public class Main {
     public static void main(String[] args) {
         try {
-            // Load the input from a resource file
             Path inputPath = Path.of(Objects.requireNonNull(Main.class.getResource("/TestProgram.txt")).toURI());
             String input = Files.readString(inputPath);
 
-            // Initialize ANTLR components
             CharStream inputStream = CharStreams.fromString(input);
             WinxLexer lexer = new WinxLexer(inputStream);
             CommonTokenStream tokenStream = new CommonTokenStream(lexer);
             WinxParser parser = new WinxParser(tokenStream);
 
-            // Parsing the input
             ParseTree tree = parser.winx();
 
-            // Creating and using the collector to process the parse tree
             WinxCollector collector = new WinxCollector();
             collector.visit(tree);
 
-            // Retrieve the collected data and save it to JSON
             List<Package> packages = collector.getPackages();
-            String json = saveAsJson(packages);
+            saveAsJson(packages);
 
             System.out.println("Data successfully saved to 'output.json'.");
+            System.out.println("Spinning up React environment...");
 
-            Path templatePath = Path.of(Objects.requireNonNull(Main.class.getResource("/graph.html")).toURI());
-            String htmlTemplate = Files.readString(templatePath);
-
-            // Replace placeholder with JSON
-            String finalHtmlContent = htmlTemplate.replace("const jsonData = null;", "const jsonData = " + json + ";");
-
-            // Save the modified HTML to a temporary file and open in a browser
-            Path tempFile = Files.createTempFile("output", ".html");
-            Files.writeString(tempFile, finalHtmlContent);
-            Desktop.getDesktop().browse(tempFile.toUri());
-
-            System.out.println("HTML with JSON data successfully opened in a browser.");
+            startReactServer();
 
         } catch (IOException | URISyntaxException e) {
             System.err.println("Error processing the input file: " + e.getMessage());
         }
     }
 
-    private static String saveAsJson(List<Package> packages) throws IOException {
+    private static void saveAsJson(List<Package> packages) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(packages);
-            Files.writeString(Paths.get("output.json"), jsonString);
-            return jsonString;
+            String jsContent = "export const jsonData = " + jsonString + ";";
+            Files.writeString(Paths.get("winx-serve/src/Data.js"), jsContent);
+            System.out.println("Data successfully saved to '" + "frontend/src/data.js" + "'.");
         } catch (JsonProcessingException e) {
             throw new IOException("Failed to serialize data to JSON", e);
         }
+    }
+
+    private static void startReactServer() throws IOException {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            processBuilder.command("cmd.exe", "/c", "cd winx-serve && npm start");
+        } else {
+            processBuilder.command("bash", "-c", "cd winx-serve && npm start");
+        }
+        processBuilder.inheritIO();
+//        Process process =
+        processBuilder.start();
+
+        // int exitCode = process.waitFor();
+        // System.out.println("React server started with exit code " + exitCode);
     }
 }
