@@ -1,60 +1,55 @@
-# Winx: Software Specification Language
-
-Welcome to Winx, a powerful language for defining software specifications in a clear and structured manner. This README provides an overview of Winx and its features.
+# Winx Language Documentation
 
 ## Overview
 
-Winx is a domain-specific language (DSL) specifically designed for writing software specifications. It offers a concise syntax for describing both functional and non-functional requirements, interfaces, packages, and more.
+Winx is a domain-specific language designed to explicitly define interfaces and specifications for systems across various domains. It enables system architects and developers to declare critical and optional operations, specify constraints, and establish clear contracts within the system components. Winx supports the development of reliable systems by enforcing strict adherence to defined behaviors and performance metrics.
 
-## Key Features
+## Features of Winx
 
-### Clear Syntax
-- Winx provides a clean and easy-to-understand syntax for defining various elements of software specifications.
+- **Type Safety:** Winx is built with strong typing to reduce errors at design time.
+- **Modularity:** Encourages modular design by separating interface definitions from implementations.
+- **Extensible Annotations:** Users can define custom annotations to enforce additional constraints or document behavior.
+- **Clear Concurrency Specifications:** Offers annotations to manage concurrency control and transaction behavior.
 
-### Hierarchical Structure
-- Specifications can be organized hierarchically into packages, interfaces, and specifications, providing a clear structure for complex software systems.
+## Language Constructs
 
-### Non-Functional Requirements
-- Winx allows you to define non-functional requirements such as performance, security, and reliability constraints using clear and concise syntax.
+### Keywords and Modifiers
 
-### Functional Requirements
-- You can specify functional requirements, including input parameters, output types, and implementation details, using intuitive syntax.
+- `package`: Defines a collection of related interfaces and specifications.
+- `interface`: Declares a group of related methods that form a contract.
+- `specification`: Provides concrete implementations of one or more interfaces.
+- `critical`, `optional`: Modifiers that dictate the necessity of methods within interfaces and specifications.
+- `implements`: Shows that a specification adheres to the contract of an interface.
 
-### Importance Levels
-- Winx supports specifying the importance level of requirements, allowing you to prioritize critical functionalities over optional ones.
+### Basic Syntax Overview
 
-### Access Modifiers
-- Access modifiers such as `public`, `protected`, `private`, and `default` can be applied to interfaces and functions, enabling fine-grained control over visibility and accessibility.
+Here is an outline of the basic syntax used in Winx:
 
-### Comments
-- Winx supports both single-line and block comments, helping you document your specifications effectively.
-
-## Example
-
-```winx
-package Database {
-    interface Database {
-        public GetUserList(FLOAT[] x, STRING ag) {
-            @ExecTime: "10s";
-            @MaxReturnVals: "10s";
-            return INT x;
+```plaintext
+package PackageName {
+    [critical|optional] interface InterfaceName {
+        [critical|optional] ReturnType MethodName(ParamType paramName) {
+            @AnnotationName : "Value";
+            return ReturnType;
         }
     }
 
-    specification DatabaseAccess implements Database {
-        critical DatabaseAccessMember {
-            optional @UserHasAdminAccess;
-            critical @UserIsNotBanned;
-            result optional DatabaseAdminPanel;
-            result critical DatabaseVisualizerPanel;
-            result Clock;
-        }
-
-        public GetUserList(FLOAT[] x, STRING ag) implements DatabaseAccessImpl {
-            @ExecTime: "10s";
-            @MaxReturnVals: "10s";
-            return INT x;
+    specification SpecificationName implements InterfaceName {
+        [critical|optional] ReturnType MethodName(ParamType paramName) {
+            // Method implementation
+            return ReturnType;
         }
     }
 }
 ```
+
+### Defining Interfaces and Specifications
+
+Interfaces in Winx define the blueprint of operations that any implementing specification must fulfill, whereas specifications provide the actual implementation logic for these interfaces.
+
+### Annotations
+
+Annotations in Winx provide essential metadata and constraints for methods within interfaces and specifications. Here are a few examples:
+
+- `@ExecTime : "3s"`: Specifies that the execution time should not exceed 3 seconds.
+- `@DataIntegrity : "High"`: Ensures high levels of data integrity during operations.
