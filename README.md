@@ -3,6 +3,7 @@
 ## Overview
 
 Winx is a domain-specific language designed to explicitly define interfaces and specifications for systems across various domains. It enables system architects and developers to declare critical and optional operations, specify constraints, and establish clear contracts within the system components. Winx supports the development of reliable systems by enforcing strict adherence to defined behaviors and performance metrics.
+![photo_2024-05-01_22-48-04](https://github.com/lumijiez/dsl-winx/assets/59575049/c9bff223-5337-4c4d-a6d8-8ac4dc532e2d)
 
 ## Features of Winx
 
