@@ -47,7 +47,7 @@ package HospitalManagementSystem {
             @DataIntegrity : "EnsureConsistency";
             return "UpdateConfirmation" status;
         }
-
+y
         optional private AssignStaff(FLOAT staffId, STRING departmentId) {
             @ExecTime : "3s";
             @AuditTrail : "Enabled";
