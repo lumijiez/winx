@@ -4,7 +4,7 @@ export const jsonData = [ {
     "name" : "PatientRecords",
     "functions" : [ {
       "name" : "FetchPatientDetails",
-      "access_modifier" : "public",
+      "access_modifier" : "protected",
       "implemented_interface" : "none",
       "importance" : "critical",
       "inputTypes" : [ {
@@ -30,7 +30,7 @@ export const jsonData = [ {
       } ]
     }, {
       "name" : "UpdatePatientRecord",
-      "access_modifier" : "public",
+      "access_modifier" : "private",
       "implemented_interface" : "none",
       "importance" : "critical",
       "inputTypes" : [ {
@@ -88,7 +88,7 @@ export const jsonData = [ {
       } ]
     }, {
       "name" : "CancelAppointment",
-      "access_modifier" : "public",
+      "access_modifier" : "private",
       "implemented_interface" : "none",
       "importance" : "optional",
       "inputTypes" : [ {
@@ -111,7 +111,7 @@ export const jsonData = [ {
     "name" : "StaffManagement",
     "functions" : [ {
       "name" : "FetchStaffDetails",
-      "access_modifier" : "public",
+      "access_modifier" : "protected",
       "implemented_interface" : "none",
       "importance" : "critical",
       "inputTypes" : [ {
@@ -163,7 +163,7 @@ export const jsonData = [ {
       } ]
     }, {
       "name" : "AssignStaff",
-      "access_modifier" : "public",
+      "access_modifier" : "private",
       "implemented_interface" : "none",
       "importance" : "optional",
       "inputTypes" : [ {
@@ -380,7 +380,7 @@ export const jsonData = [ {
       } ]
     }, {
       "name" : "AssignStaff",
-      "access_modifier" : "public",
+      "access_modifier" : "private",
       "implemented_interface" : "StaffManagement",
       "importance" : "optional",
       "inputTypes" : [ {

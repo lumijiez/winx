@@ -1,7 +1,7 @@
 package HospitalManagementSystem {
 
     critical interface PatientRecords {
-        critical public FetchPatientDetails(FLOAT patientId) {
+        critical protected FetchPatientDetails(FLOAT patientId) {
             @ExecTime : "3s";
             @MaxReturnVals : "1";
             @DataFormat : "ID: %patientId,DOB: %dob";
@@ -9,7 +9,7 @@ package HospitalManagementSystem {
             return "PatientDetails" details;
         }
 
-        critical public UpdatePatientRecord(FLOAT patientId, STRING updates) {
+        critical private UpdatePatientRecord(FLOAT patientId, STRING updates) {
             @ExecTime : "3s";
             @DataIntegrity : "High";
             @DataConcurrency : "Serializable";
@@ -25,7 +25,7 @@ package HospitalManagementSystem {
             return "AppointmentConfirmation" confirmation;
         }
 
-        optional public CancelAppointment(FLOAT appointmentId) {
+        optional private CancelAppointment(FLOAT appointmentId) {
             @ExecTime : "2s";
             @CancellationFee : "NoChargeWithin24h";
             return "CancellationConfirmation" status;
@@ -33,7 +33,7 @@ package HospitalManagementSystem {
     }
 
     critical interface StaffManagement {
-        critical public FetchStaffDetails(FLOAT staffId) {
+        critical protected FetchStaffDetails(FLOAT staffId) {
             @ExecTime : "4s";
             @MaxReturnVals : "1";
             @DataFormat : "Staff ID: %staffId, Role: %role";
@@ -48,7 +48,7 @@ package HospitalManagementSystem {
             return "UpdateConfirmation" status;
         }
 
-        optional public AssignStaff(FLOAT staffId, STRING departmentId) {
+        optional private AssignStaff(FLOAT staffId, STRING departmentId) {
             @ExecTime : "3s";
             @AuditTrail : "Enabled";
             @DataLogging : "Detailed";
@@ -118,7 +118,7 @@ package HospitalManagementSystem {
             return "UpdateConfirmation" status;
         }
 
-        optional public AssignStaff(FLOAT staffId, STRING departmentId) implements StaffManagement {
+        optional private AssignStaff(FLOAT staffId, STRING departmentId) implements StaffManagement {
             @ExecTime : "3s";
             @PermissionCheck : "DepartmentHeadApproval";
             @RealTimeUpdate : "Required";
