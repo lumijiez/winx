@@ -1,44 +1,22 @@
 import React, { useEffect } from 'react';
 import ReactFlow, { Controls, Background, useNodesState, useEdgesState } from 'react-flow-renderer';
 import CustomNodeComponent from './CustomNodeComponent';
-import { ReactFlowProvider } from "reactflow";
-import { jsonData } from './Data.js';
-import dagre from 'dagre';
+import {ReactFlowProvider} from "reactflow";
+import {jsonData} from './Data.js';
 
 const nodeTypes = {
     customNode: CustomNodeComponent,
 };
 
-function CustomGraph() {
+function CustomGraph1() {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-    const yOffset = 1;
-
     useEffect(() => {
-        const g = new dagre.graphlib.Graph();
-        g.setGraph({
-            rankdir: 'TB',
-            marginx: 50,
-            marginy: 50
-        });
-        g.setDefaultEdgeLabel(() => ({}));
-
-        const addNodesAndEdges = (nodesToAdd, edgesToAdd) => {
-            nodesToAdd.forEach(node => {
-                g.setNode(node.id, { width: 450, height: 200 });
-            });
-            edgesToAdd.forEach(edge => {
-                g.setEdge(edge.source, edge.target);
-            });
-            return { nodesToAdd, edgesToAdd };
-        };
-
-        // Initialize loaded nodes and edges arrays
         const loadedNodes = [];
         const loadedEdges = [];
+        let yOffset = 100;
 
-        // Process each package in the JSON data
         jsonData.forEach((pkg, index) => {
             const pkgId = `pkg-${pkg.name}`;
             loadedNodes.push({
@@ -143,25 +121,14 @@ function CustomGraph() {
             });
         });
 
-        // Apply nodes and edges to the dagre graph for layout calculation
-        const { nodesToAdd, edgesToAdd } = addNodesAndEdges(loadedNodes, loadedEdges);
-        dagre.layout(g);
+        console.log(loadedEdges)
 
-        // Assign positions to nodes based on dagre layout
-        const positionedNodes = nodesToAdd.map(node => ({
-            ...node,
-            position: {
-                x: g.node(node.id).x - g.node(node.id).width / 2,
-                y: g.node(node.id).y - g.node(node.id).height / 2
-            }
-        }));
-
-        setNodes(positionedNodes);
-        setEdges(edgesToAdd);
+        setNodes(loadedNodes);
+        setEdges(loadedEdges);
     }, [setNodes, setEdges]);
 
     return (
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ height: 100+'vh', width: 100 + '%' }}>
             <ReactFlowProvider>
                 <ReactFlow
                     nodes={nodes}
@@ -169,8 +136,8 @@ function CustomGraph() {
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     nodeTypes={nodeTypes}
-                    fitView
-                >
+                    fitView>
+
                     <Controls />
                     <Background />
                 </ReactFlow>
@@ -179,4 +146,4 @@ function CustomGraph() {
     );
 }
 
-export default CustomGraph;
+export default CustomGraph1;

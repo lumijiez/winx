@@ -43,6 +43,8 @@ public class Main {
 
         } catch (IOException | URISyntaxException e) {
             System.err.println("Error processing the input file: " + e.getMessage());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -58,19 +60,18 @@ public class Main {
         }
     }
 
-    private static void startReactServer() throws IOException {
+    private static void startReactServer() throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder();
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
-            processBuilder.command("cmd.exe", "/c", "cd winx-serve && npm start");
+            processBuilder.command("cmd.exe", "/c", "start", "cmd.exe", "/k", "cd winx-serve && npm start");
         } else {
-            processBuilder.command("bash", "-c", "cd winx-serve && npm start");
+            processBuilder.command("xterm", "-e", "bash", "-c", "cd winx-serve && npm start");
         }
-        processBuilder.inheritIO();
-//        Process process =
+        //processBuilder.inheritIO();
         processBuilder.start();
 
-        // int exitCode = process.waitFor();
-        // System.out.println("React server started with exit code " + exitCode);
+         //int exitCode = process.waitFor();
+         //System.out.println("React server started with exit code " + exitCode);
     }
 }

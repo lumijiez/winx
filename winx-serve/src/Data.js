@@ -23,7 +23,7 @@ export const jsonData = [ {
         "value" : "\"1\""
       }, {
         "key" : "DataFormat",
-        "value" : "\"ID: %patientId, DOB: %dob\""
+        "value" : "\"ID: %patientId,DOB: %dob\""
       }, {
         "key" : "DataPrivacy",
         "value" : "\"High\""
